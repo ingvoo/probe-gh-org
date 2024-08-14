@@ -12,9 +12,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <main>{children}</main>
+    <html className="h-full" lang="en">
+      <body className="h-full">
+        <main className="bg-slate-100 h-full pt-4">
+          <div className="container bg-white px-12 mx-auto max-w-5xl">
+            {children}
+          </div>
+        </main>
       </body>
     </html>
   );
