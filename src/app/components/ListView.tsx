@@ -1,14 +1,29 @@
-// TODO: add types for list item
+type ListItem = {
+  id: number;
+  login: string;
+  url?: string;
+  description?: string;
+};
 
-const ListView = (props: any) => {
+type ListViewProps = {
+  listings: Array<ListItem>;
+};
+
+const ListView = ({ listings }: ListViewProps) => {
   return (
     <ul>
-      {props.listings.map((item: any) => (
-        <li className="py-4 border-t flex justify-between gap-4" key={item.id}>
-          <span className="font-bold text-lg">{item.login}</span>
-          <span>
-            {item.description ? item.description : "Description not avaialable"}
-          </span>
+      {listings.map((item) => (
+        <li className="border-t" key={item.id}>
+          <a className="flex justify-between gap-4 py-4" href={item.url}>
+            <span className="font-bold text-lg">
+              {item.login} <small>({item.id})</small>
+            </span>
+            <span>
+              {item.description
+                ? item.description
+                : "Description not available"}
+            </span>
+          </a>
         </li>
       ))}
     </ul>
