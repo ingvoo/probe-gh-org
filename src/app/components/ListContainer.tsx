@@ -11,7 +11,13 @@ export default function ListingsContainerComponent() {
 
   React.useEffect(() => {
     fetch(endPoint)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        } else {
+          throw new Error("error");
+        }
+      })
       .then((res) => setData(res))
       .catch((err) => {
         console.error("Error: ", err);
@@ -28,6 +34,7 @@ export default function ListingsContainerComponent() {
     );
   }
 
+  // TODO: add a loader while waiting
   if (!data) {
     return <AppNotification message="Did not find any Organisations" />;
   }
